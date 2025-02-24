@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Optimization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.pexels.com/photos/8112194/pexels-photo-8112194.jpeg') no-repeat center center/cover;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        input[type="file"] {
+            font-size: 1.2rem;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+        .parsed-data {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Optimization</h1>
+        <p>Upload your resume, and our AI will extract key details to enhance it for better visibility.</p>
+        <input type="file" id="resumeUpload" accept=".pdf">
+        <p id="file-name" style="color: white; font-size: 1rem;"></p>
+        <button class="btn" onclick="uploadResume()">Parse Resume</button>
+        <div id="parsedData"></div>
+    </div>
+
+
+    <script>
+        function uploadResume() {
+            const fileInput = document.getElementById("resumeUpload");
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please upload a resume first.");
+                return;
+            }
+            document.getElementById("file-name").textContent = `Uploaded: ${file.name}`;
+
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const typedarray = new Uint8Array(this.result);
+                pdfjsLib.getDocument(typedarray).promise.then(pdf => {
+                    let textContent = "";
+                    let promises = [];
+
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        promises.push(
+                            pdf.getPage(i).then(page =>
+                                page.getTextContent().then(text => {
+                                    text.items.forEach(item => {
+                                        textContent += item.str + " ";
+                                    });
+                                })
+                            )
+                        );
+                    }
+        
+                    Promise.all(promises).then(() => {
+                        parseResumeText(textContent);
+                    });
+                });
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+
+        function parseResumeText(text) {
+            function extractField(fieldName) {
+                const regex = new RegExp(fieldName + "\\s*[:–-]?[\\s]*([\\w\\W]+?)(?=(?:\\s*[:–-]|$))", "i");
+                const match = text.match(regex);
+                return match ? match[1].trim() : "Not found";
+            }
+
+
+            document.getElementById("parsedData").innerHTML = `
+                <div class='parsed-data'>
+                    <p><strong>Name:</strong> ${extractField("Name")}</p>
+                    <p><strong>Email:</strong> ${extractField("Email")}</p>
+                    <p><strong>Phone:</strong> ${extractField("Phone")}</p>
+                    <p><strong>Experience:</strong> ${extractField("Experience")}</p>
+                    <p><strong>Skills:</strong> ${extractField("Skills")}</p>
+                    <p><strong>Education:</strong> ${extractField("Education")}</p>
+                    <p><strong>Job Title:</strong> ${extractField("Job Title")}</p>
+                    <p><strong>Certifications:</strong> ${extractField("Certifications")}</p>
+                    <p><strong>Projects:</strong> ${extractField("Projects")}</p>
+                    <p><strong>Achievements:</strong> ${extractField("Achievements")}</p>
+                    <p><strong>Technical Skills:</strong> ${extractField("Technical Skills")}</p>
+                    <p><strong>Soft Skills:</strong> ${extractField("Soft Skills")}</p>
+                    <p><strong>Languages Known:</strong> ${extractField("Languages Known")}</p>
+                    <p><strong>Contact:</strong> ${extractField("Contact")}</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
+
+
+

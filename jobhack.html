@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobConnect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-attachment: fixed;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            width: 400px;
+        }
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 35px;
+        }
+        .buttons button {
+            border: none;
+            padding: 14px 28px;
+            margin: 10px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 150px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .signup {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+        .signup:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+            transform: scale(1.05);
+        }
+        .login {
+            background: white;
+            color: #333;
+            border: 2px solid white;
+        }
+        .login:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JobConnect</h1>
+        <p>Your AI-powered career companion</p>
+        <div class="buttons">
+            <button class="signup" onclick="window.location.href='signup.html'">Sign Up</button>
+            <button class="login" onclick="window.location.href='welcome.html'">Login</button>
+        </div>
+    </div>
+</body>
+</html>

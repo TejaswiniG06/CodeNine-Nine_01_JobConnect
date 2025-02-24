@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Tech Question Bank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom right, #1e3a8a, #059669);
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        select, input {
+            width: calc(50% - 10px);
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        .question {
+            background: linear-gradient(to right, #059669, #1e3a8a);
+            color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+        }
+        .question:hover {
+            transform: scale(1.05);
+        }
+        .no-results {
+            color: #555;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Explore Tech Question Bank</h1>
+        <select id="branch">
+            <option value="">Select Branch</option>
+            <option value="cs">Computer Science</option>
+            <option value="it">Information Technology</option>
+            <option value="ece">Electronics and Communication</option>
+        </select>
+        <input type="text" id="search" placeholder="Search questions...">
+        <div id="question-grid" class="grid"></div>
+    </div>
+
+
+    <script>
+        const questions = {
+            cs: [
+                "Explain the concept of object-oriented programming.",
+                "How do you optimize the performance of a web application?",
+                "What is the significance of APIs in modern software?"
+            ],
+            it: [
+                "How do you ensure cybersecurity best practices in your code?",
+                "What is cloud computing and its benefits?",
+                "Describe your experience with programming languages like Python, Java, or C++."
+            ],
+            ece: [
+                "Explain the working of microcontrollers.",
+                "What is the importance of signal processing?",
+                "Describe the concept of wireless communication."
+            ]
+        };
+
+
+        const searchInput = document.getElementById('search');
+        const branchSelect = document.getElementById('branch');
+        const questionGrid = document.getElementById('question-grid');
+
+
+        function displayQuestions() {
+            questionGrid.innerHTML = '';
+            const branch = branchSelect.value;
+            const filter = searchInput.value.toLowerCase();
+
+
+            if (branch && questions[branch]) {
+                const filtered = questions[branch].filter(q => q.toLowerCase().includes(filter));
+
+
+                if (filtered.length > 0) {
+                    filtered.forEach(q => {
+                        const div = document.createElement('div');
+                        div.className = 'question';
+                        div.textContent = q;
+                        questionGrid.appendChild(div);
+                    });
+                } else {
+                    questionGrid.innerHTML = '<div class="no-results">No questions found</div>';
+                }
+            } else {
+                questionGrid.innerHTML = '<div class="no-results">Select a branch to view questions</div>';
+            }
+        }
+
+
+        searchInput.addEventListener('input', displayQuestions);
+        branchSelect.addEventListener('change', displayQuestions);
+
+
+        displayQuestions();
+    </script>
+</body>
+</html>
+
+

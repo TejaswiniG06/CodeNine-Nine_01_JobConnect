@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobConnect - Features</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') no-repeat center center/cover;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+            overflow-y: auto;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            transform: scale(1.07);
+        }
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 1200px;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .feature-box {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+        .feature-box:hover {
+            transform: scale(1.1);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        p.feature-desc {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+    </style>
+    <script>
+        function goBackToWelcomePage() {
+            window.location.href = 'welcome.html';
+        }
+
+
+        function goToResumeOptimization() {
+            window.location.href = 'b1.html';
+        }
+
+
+        function goToSkillGapAnalysis() {
+            window.location.href = 'skillgap.html';
+        }
+        function goToAiPrep(){
+            window.location.href= 'aiprep.html';
+        }
+        function goTosalary(){
+            window.location.href= 'salary-insight.html';
+        }
+        function goToChatbot(){
+            window.location.href= 'chatbot.html';
+        }
+        function goToJobFinder(){
+            window.location.href= 'jobfinder.html';
+        }
+        function goToCom(){
+            window.location.href= 'community-qna.html';
+        }
+    </script>
+</head>
+<body>
+    <button class="back-button" onclick="goBackToWelcomePage()">← Back to Welcome</button>
+    <div class="container">
+        <h1>Unlock Your Career Potential</h1>
+        <p>Leverage our AI-powered tools to enhance your resume, close skill gaps, and expand your professional network for long-term career growth.</p>
+        <div class="features">
+            <div class="feature-box" onclick="goToResumeOptimization()">
+                <div class="feature-icon">📄</div>
+                <h2>Resume Optimization</h2>
+                <p class="feature-desc">Refine your resume to meet industry standards and boost visibility.</p>
+            </div>
+            <div class="feature-box" onclick="goToSkillGapAnalysis()">
+                <div class="feature-icon">💡</div>
+                <h2>Job Matching & Skill Gap Analysis</h2>
+                <p class="feature-desc">Identify key areas to improve and advance your professional skills.</p>
+            </div>
+            <div class="feature-box" onclick="goToAiPrep()">
+                <div class="feature-icon">🌐</div>
+                <h2>AI-Powered Interview Preparation</h2>
+                <p class="feature-desc">AI generates role-specific interview questions and evaluates the responses.
+                </p>
+            </div>
+            <div class="feature-box" onclick="goTosalary()">
+                <div class="feature-icon">📈</div>
+                <h2>Salary Insights & Negotiation Assistance</h2>
+                <p class="feature-desc">The system provides salary predictions and negotiation strategies based on market data.
+                    .</p>
+            </div>
+            <div class="feature-box" onclick="goToChatbot()">
+                <div class="feature-icon">🧭</div>
+                <h2>Personalized Career Guidance & Networking</h2>
+                <p class="feature-desc">AI chatbot provides career advice based on user preferences and industry trends.
+                    .</p>
+            </div>
+            <div class="feature-box" onclick="goToJobFinder()">
+                <div class="feature-icon">🎯</div>
+                <h2>Smart Job Finder & Application Tracker
+                </h2>
+                <p class="feature-desc">AI suggests job listings based on user skills, interests, and location.
+
+
+                    .</p>
+            </div>
+            <div class="feature-box" onclick="goToCom()">
+                <div class="feature-icon">👥</div>
+                <h2>Community Q & A forum
+                </h2>
+                <p class="feature-desc">A user-friendly Community Q&A forum for anonymously sharing interview experiences and asking questions.
+
+
+                    .</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

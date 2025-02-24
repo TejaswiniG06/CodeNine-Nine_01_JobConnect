@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobConnect - Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1504384308090-c894fdcc538d">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-attachment: fixed;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            width: 500px;
+        }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        button {
+            border: none;
+            padding: 16px 32px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background: linear-gradient(135deg, #218838, #28a745);
+            transform: scale(1.07);
+        }
+    </style>
+    <script>
+        function goToFeaturesPage() {
+            window.location.href = 'features.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to JobConnect!</h1>
+        <p>Optimize your resume, identify skill gaps, and unlock networking opportunities to boost your career growth.</p>
+        <button onclick="goToFeaturesPage()">Explore</button>
+    </div>
+</body>
+</html>
+
+

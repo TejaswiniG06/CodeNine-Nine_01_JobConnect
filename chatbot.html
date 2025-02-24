@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Guidance Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chatbox {
+            width: 360px;
+            height: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 2px solid #d1c4e9;
+        }
+        .chatbox-header {
+            background-color: #9c27b0;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .messages {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f3e5f5;
+            display: flex;
+            flex-direction: column;
+        }
+        .input-area {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: #ffffff;
+        }
+        .input-area input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .input-area button {
+            padding: 10px 15px;
+            background-color: #9c27b0;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .input-area button:hover {
+            background-color: #7b1fa2;
+        }
+        .message {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+        .message img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .message p {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 70%;
+            word-wrap: break-word;
+            font-size: 14px;
+        }
+        .user-message {
+            justify-content: flex-end;
+            text-align: right;
+        }
+        .user-message p {
+            background-color: #b3e5fc;
+            color: #333;
+            margin-right: 10px;
+        }
+        .bot-message {
+            justify-content: flex-start;
+            text-align: left;
+        }
+        .bot-message p {
+            background-color: #d1c4e9;
+            color: #333;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+        .options button {
+            background-color: #9c27b0;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        .options button:hover {
+            background-color: #7b1fa2;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbox">
+        <div class="chatbox-header">Career Guidance Chatbot</div>
+        <div class="messages" id="chatMessages">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+
+    <script>
+        const welcomeMessage = "Hi! What can I do for you today? Please choose one of the options below.";
+       
+        const options = [
+            "Assess Skills and Interests",
+            "Offer Career Path Suggestions",
+            "Provide Job Search Tips"
+        ];
+
+
+        let userResponses = [];
+
+
+        function displayMessage(sender, message) {
+            const chatMessages = document.getElementById("chatMessages");
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `message ${sender}-message`;
+            if (sender === 'user') {
+                messageDiv.innerHTML = `<img src="https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256_1280.png" alt="User"> <p>${message}</p>`;
+            } else {
+                messageDiv.innerHTML = `<img src="https://cdn.pixabay.com/photo/2017/03/31/23/11/robot-2192617_1280.png" alt="Bot"> <p>${message}</p>`;
+            }
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+
+        function displayOptions() {
+            const chatMessages = document.getElementById("chatMessages");
+            const optionsDiv = document.createElement("div");
+            optionsDiv.className = 'options';
+
+
+            options.forEach(option => {
+                const button = document.createElement("button");
+                button.textContent = option;
+                button.onclick = () => handleOptionSelection(option);
+                optionsDiv.appendChild(button);
+            });
+
+
+            chatMessages.appendChild(optionsDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+
+        function handleOptionSelection(option) {
+            displayMessage('user', option);
+
+
+            switch (option) {
+                case "Assess Skills and Interests":
+                    askSkillsAndInterests();
+                    break;
+                case "Offer Career Path Suggestions":
+                    askCareerInterests();
+                    break;
+                case "Provide Job Search Tips":
+                    provideJobSearchTips();
+                    break;
+                default:
+                    displayMessage('bot', "Sorry, I didn't understand that.");
+            }
+        }
+
+
+        function askSkillsAndInterests() {
+            displayMessage('bot', "What are your main skills and interests? (e.g., Programming, Design, Communication, etc.)");
+        }
+
+
+        function askCareerInterests() {
+            displayMessage('bot', "What industry or career path are you interested in? (e.g., Tech, Marketing, Healthcare, etc.)");
+        }
+
+
+        function provideJobSearchTips() {
+            displayMessage('bot', "Here are some tips to help you with your job search:\n1. Use job boards like LinkedIn, Indeed, Glassdoor.\n2. Tailor your resume for each job.\n3. Network with people in your field.");
+        }
+
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput");
+            const message = userInput.value.trim();
+            if (message) {
+                displayMessage('user', message);
+                userResponses.push(message);
+                userInput.value = '';
+
+
+                // Based on the current conversation state, proceed with the next step
+                if (userResponses.length === 1 && userResponses[0] !== "") {
+                    displayMessage('bot', "Thank you! I will now analyze your input and provide recommendations.");
+                } else {
+                    displayOptions();
+                }
+            }
+        }
+
+
+        // Initialize the chatbot conversation
+        displayMessage('bot', welcomeMessage);
+        displayOptions();
+    </script>
+</body>
+</html>
+
+

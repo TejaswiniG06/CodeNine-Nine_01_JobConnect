@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Gap Analysis</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://images.pexels.com/photos/669616/pexels-photo-669616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed;
+            background-size: cover;  /* Ensures the image covers the entire viewport */
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            height: 100vh; /* Ensures the page covers the full viewport height */
+        }
+
+
+        /* Dark overlay for better text contrast */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+            z-index: 0;
+        }
+
+
+        header {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(30, 42, 71, 0.8);
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .header-container h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+
+        .subheading {
+            font-size: 1.2rem;
+            color: #c0c0c0;
+            margin-top: 10px;
+        }
+
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+
+        .container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: #1e2a47;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+
+        .file-input-container input[type="file"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            font-size: 1rem;
+            background-color: #f8f8f8;
+            color: #333;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+
+        .file-input-container input[type="file"]:hover,
+        select:hover {
+            border-color: #2575fc;
+        }
+
+
+        .file-input-container input[type="file"] {
+            background-color: #fff;
+        }
+
+
+        .progress-indicator {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+
+        .progress-bar .progress {
+            height: 100%;
+            width: 0%;  /* Initial width set to 0% */
+            background-color: #4caf50; /* Green color for progress */
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+
+        .results-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+
+        .results-section h2 {
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+
+        .results-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+
+        .results-section li {
+            margin: 10px 0;
+        }
+
+
+        #cta {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+
+        #cta button {
+            background-color: #1e2a47;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+
+        #cta button:hover {
+            background-color: #2575fc;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="overlay"></div>
+    <header>
+        <h1>Skill Gap Analysis</h1>
+        <p>Upload your resume and select a job role to discover your skill gaps.</p>
+    </header>
+
+
+    <div class="container">
+        <div class="input-section">
+            <div class="section-title">
+                <h2>Upload Resume</h2>
+            </div>
+            <input type="file" id="resume-upload" accept=".pdf,.docx" />
+            <p>Please upload your resume to proceed.</p>
+
+
+            <div class="section-title">
+                <h2>Select Job Role</h2>
+            </div>
+            <select id="job-role">
+                <option value="developer">Software Developer</option>
+                <option value="data_scientist">Data Scientist</option>
+                <option value="designer">UI/UX Designer</option>
+                <option value="other">Other</option>
+            </select>
+
+
+            <div class="section-title">
+                <h2>Upload Job Description (Optional)</h2>
+            </div>
+            <input type="file" id="job-description-upload" accept=".pdf,.docx" />
+            <p>Or select a job role to pull industry-standard requirements.</p>
+        </div>
+
+
+        <!-- Process Indicator -->
+        <div id="progress-indicator" style="display: none;">
+            <p>Analyzing your resume and job description...</p>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+
+
+        <!-- Skill Matching Results -->
+        <div id="matching-results" class="results-section" style="display: none;">
+            <h2>Matched Skills</h2>
+            <ul id="matched-skills"></ul>
+
+
+            <h2>Missing Skills</h2>
+            <ul id="missing-skills"></ul>
+
+
+            <h2>Keyword Optimization</h2>
+            <ul id="keyword-optimization"></ul>
+
+
+            <h2>Job Fit Score</h2>
+            <p id="job-fit-score">Your Job Fit Score: <span id="score-value">0%</span></p>
+            <div id="job-fit-progress">
+                <div class="progress-bar">
+                    <div class="progress" id="job-fit-bar" style="width: 0%;"></div>
+                </div>
+            </div>
+
+
+            <h2>Recommendations</h2>
+            <ul id="recommendations"></ul>
+        </div>
+
+
+        <!-- Call to Action -->
+        <div id="cta" style="display: none;">
+            <button id="download-resume">Download Updated Resume</button>
+            <button id="apply-job">Apply for Job</button>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>Contact: support@skillgapanalysis.com</p>
+    </footer>
+
+
+    <script>
+        // Mocked functions for frontend behavior (replace with actual logic)
+        function handleResumeUpload() {
+            document.getElementById('progress-indicator').style.display = 'block';
+            let progress = 0;
+            let interval = setInterval(function () {
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    showResults();
+                } else {
+                    progress += 10;  // Increments by 10% for smoother progress
+                    document.querySelector('.progress-bar .progress').style.width = progress + '%';
+                }
+            }, 500);
+        }
+
+
+        function showResults() {
+            document.getElementById('matching-results').style.display = 'block';
+            document.getElementById('cta').style.display = 'block';
+
+
+            // Fill dynamic content
+            document.getElementById('matched-skills').innerHTML = `<li>JavaScript</li><li>React</li>`;
+            document.getElementById('missing-skills').innerHTML = `<li>Node.js</li><li>GraphQL</li>`;
+            document.getElementById('keyword-optimization').innerHTML = `<li>Optimize "JavaScript" to "JavaScript Developer"</li>`;
+            document.getElementById('score-value').innerText = '75%';
+            document.getElementById('job-fit-bar').style.width = '75%';  // Ensure it fills to 75%
+            document.getElementById('recommendations').innerHTML = `<li>Udemy: Node.js for Beginners</li><li>Coursera: GraphQL Mastery</li>`;
+        }
+
+
+        // Trigger upload progress simulation
+        document.getElementById('resume-upload').addEventListener('change', handleResumeUpload);
+    </script>
+</body>
+
+
+</html>
+
+

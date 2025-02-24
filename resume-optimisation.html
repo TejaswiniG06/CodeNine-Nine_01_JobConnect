@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Optimization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://files.oaiusercontent.com/file-2nqw9qCoh3ZCSq1fPqygTE?se=2025-02-23T10%3A59%3A36Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Da9a828b6-f17d-4a2a-8057-46ea170fa2fc.webp&sig=FYuhlJ%2BnqmNi2Zi8kgE/URAEAq71/JAdNzSmuFLlRIA%3D') no-repeat center center/cover;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+
+        .btn {
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background 0.3s ease;
+            margin-top: 30px;
+        }
+
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+
+        input[type="file"] {
+            font-size: 1.2rem;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: #f0f0f0;
+        }
+
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            transform: scale(1.07);
+        }
+    </style>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+
+        // Function to handle file upload (this can be expanded for backend processing)
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileNameElement = document.getElementById('file-name');
+                fileNameElement.textContent = `Selected file: ${file.name}`;
+                alert(`File '${file.name}' uploaded successfully! Now we can process the resume.`);
+            }
+        }
+    </script>
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">← Back to Features</button>
+
+
+    <div class="container">
+        <h1>Resume Optimization</h1>
+        <p>Upload your resume below, and our AI will optimize it for better visibility and industry standards.</p>
+
+
+        <div class="feature-icon">📄</div>
+        <h2>Upload Your Resume</h2>
+
+
+        <input type="file" accept=".pdf,.docx,.txt" onchange="handleFileUpload(event)">
+    
+        <p id="file-name" style="font-size: 1rem; color: white; margin-top: 10px;"></p>
+
+
+        <button class="btn" onclick="alert('Resume optimization in progress!')">Optimize Resume</button>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://miro.medium.com/v2/resize:fit:599/1*iJfMK4CMmLuaV7D_UeIP2g.jpeg');
+            background-size: cover; /* Make sure the image covers the entire background */
+            background-position: center center; /* Centers the background image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+
+        .container {
+            background: rgba(0, 0, 0, 0.6); /* A darker background with transparency */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 380px; /* Adjusted width to fit better */
+            max-width: 100%;
+            text-align: center;
+        }
+
+
+        h2 {
+            color: white; /* Set heading color to white */
+        }
+
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+
+        .form-group.error input, .form-group.error select {
+            border-color: red;
+        }
+
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+
+        .dob-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        .dob-container select {
+            width: 32%;
+        }
+
+
+        label[for="yearOfStudy"] {
+            color: white; /* Set "Year of Study" label color to white */
+        }
+
+
+        .btn {
+            background: lightgrey; /* Set submit button to light grey */
+            color: black;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+
+        .btn:hover {
+            background: #d3d3d3; /* Darker grey on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registrationForm">
+            <div class="form-group" id="firstNameGroup">
+                <input type="text" id="firstName" placeholder="Enter your first name">
+                <div class="error-message" id="firstNameError"></div>
+            </div>
+            <div class="form-group" id="lastNameGroup">
+                <input type="text" id="lastName" placeholder="Enter your surname">
+                <div class="error-message" id="lastNameError"></div>
+            </div>
+            <div class="form-group dob-container">
+                <select id="dobDay">
+                    <option value="">Day</option>
+                    <!-- Populate days 1-31 dynamically -->
+                </select>
+                <select id="dobMonth">
+                    <option value="">Month</option>
+                    <option value="Jan">Jan</option>
+                    <option value="Feb">Feb</option>
+                    <option value="Mar">Mar</option>
+                    <!-- Add remaining months -->
+                </select>
+                <select id="dobYear">
+                    <option value="">Year</option>
+                    <!-- Populate years dynamically -->
+                </select>
+                <div class="error-message" id="dobError"></div>
+            </div>
+            <div class="form-group">
+                <select id="gender">
+                    <option value="Prefer not to say">Prefer not to say</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" id="mobileNumber" placeholder="Enter your mobile number">
+                <div class="error-message" id="mobileNumberError"></div>
+            </div>
+            <div class="form-group">
+                <select id="branchOfStudy">
+                    <option value="">Select Branch of Study</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Science">Science</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Commerce">Commerce</option>
+                    <option value="Management">Management</option>
+                    <option value="Law">Law</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group dob-container">
+                <label for="yearOfStudy">Year of Study</label>
+                <select id="yearFrom">
+                    <option value="">Start Year</option>
+                    <!-- Populate years dynamically for the start year -->
+                </select>
+                <select id="yearTo">
+                    <option value="">End Year</option>
+                    <!-- Populate years dynamically for the end year -->
+                </select>
+            </div>
+            <div class="form-group" id="emailGroup">
+                <input type="email" id="email" placeholder="Enter your email address">
+                <div class="error-message" id="emailError"></div>
+            </div>
+            <div class="form-group" id="passwordGroup">
+                <input type="password" id="password" placeholder="Create a password">
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            <div class="form-group" id="confirmPasswordGroup">
+                <input type="password" id="confirmPassword" placeholder="Confirm your password">
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let isValid = true;
+
+
+            function showError(id, message) {
+                document.getElementById(id + "Group").classList.add("error");
+                document.getElementById(id + "Error").textContent = message;
+                isValid = false;
+            }
+
+
+            function clearError(id) {
+                document.getElementById(id + "Group").classList.remove("error");
+                document.getElementById(id + "Error").textContent = "";
+            }
+
+
+            const nameRegex = /^[A-Za-z]+$/;
+            let firstName = document.getElementById("firstName").value.trim();
+            let lastName = document.getElementById("lastName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let mobileNumber = document.getElementById("mobileNumber").value.trim();
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            let branchOfStudy = document.getElementById("branchOfStudy").value;
+            let yearFrom = document.getElementById("yearFrom").value;
+            let yearTo = document.getElementById("yearTo").value;
+           
+            if (!firstName) showError("firstName", "* This field is mandatory");
+            else if (!nameRegex.test(firstName)) showError("firstName", "Please enter a valid name");
+            else clearError("firstName");
+
+
+            if (!lastName) showError("lastName", "* This field is mandatory");
+            else if (!nameRegex.test(lastName)) showError("lastName", "Please enter a valid name");
+            else clearError("lastName");
+
+
+            if (!email) showError("email", "* This field is mandatory");
+            else if (!email.includes("@") || !email.includes(".")) showError("email", "Please enter a valid mail ID");
+            else clearError("email");
+
+
+            if (!mobileNumber) showError("mobileNumber", "* This field is mandatory");
+            else clearError("mobileNumber");
+
+
+            if (!branchOfStudy) showError("branchOfStudy", "* This field is mandatory");
+            else clearError("branchOfStudy");
+
+
+            if (!yearFrom || !yearTo) showError("yearOfStudy", "* This field is mandatory");
+            else clearError("yearOfStudy");
+
+
+            if (!password) showError("password", "* This field is mandatory");
+            else if (password.length < 8) showError("password", "Password must be at least 8 characters");
+            else if (!/[A-Z]/.test(password)) showError("password", "Password must contain at least one uppercase letter");
+            else if (!/[a-z]/.test(password)) showError("password", "Password must contain at least one lowercase letter");
+            else if (!/[^A-Za-z0-9]/.test(password)) showError("password", "Password must contain at least one special character");
+            else clearError("password");
+
+
+            if (confirmPassword !== password) showError("confirmPassword", "Passwords do not match");
+            else clearError("confirmPassword");
+
+
+            if (isValid) alert("Form submitted successfully!");
+        });
+    </script>
+</body>
+</html>
+
+

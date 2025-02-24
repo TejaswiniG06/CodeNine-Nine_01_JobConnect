@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Insights & Negotiation Assistance</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        header h1 {
+            color: #0077b6;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+
+        header p {
+            font-size: 18px;
+            color: #555555;
+        }
+
+
+        /* Form Section */
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+
+        .form-section h2 {
+            color: #023e8a;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #f1f8ff;
+            transition: all 0.3s ease;
+        }
+
+
+        select:focus {
+            border-color: #0077b6;
+            outline: none;
+        }
+
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+
+        button:hover {
+            background: #005f86;
+        }
+
+
+        /* Results Section */
+        .results-section {
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease;
+        }
+
+
+        .results-section h2 {
+            color: #023e8a;
+            font-size: 28px;
+            text-align: center;
+        }
+
+
+        .result-box {
+            border: 1px solid #bbb;
+            border-radius: 12px;
+            padding: 20px;
+            background: #e9f5ff;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+
+        .result-box p {
+            font-size: 18px;
+            margin: 12px 0;
+        }
+
+
+        .result-box button {
+            width: 50%;
+            background: #00b894;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+
+        .result-box button:hover {
+            background: #009974;
+        }
+
+
+        /* Tips Section */
+        .tips-section h2 {
+            color: #023e8a;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+        .tip {
+            border: 1px solid #bbb;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            background: #f1f8ff;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+
+        .tip h3 {
+            color: #0077b6;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+
+        .tip p {
+            font-size: 16px;
+            color: #555555;
+        }
+
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>💸 Salary Insights & Negotiation Assistance</h1>
+            <p>Get personalized salary predictions and expert negotiation tips.</p>
+        </header>
+
+
+        <!-- Salary Prediction Form -->
+        <section class="form-section">
+            <h2>🔍 Predict Your Expected Salary</h2>
+            <form id="salaryForm">
+                <label for="jobRole">Job Role:</label>
+                <select id="jobRole" name="jobRole" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="Marketing Specialist">Marketing Specialist</option>
+                </select>
+
+
+                <label for="industry">Industry:</label>
+                <select id="industry" name="industry" required>
+                    <option value="" disabled selected>Select your industry</option>
+                    <option value="IT">IT</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Education">Education</option>
+                </select>
+
+
+                <label for="location">Location:</label>
+                <select id="location" name="location" required>
+                    <option value="" disabled selected>Select your location</option>
+                    <option value="New York">New York</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Seattle">Seattle</option>
+                </select>
+
+
+                <label for="experience">Years of Experience:</label>
+                <select id="experience" name="experience" required>
+                    <option value="" disabled selected>Select experience level</option>
+                    <option value="0-1">0-1 years</option>
+                    <option value="2-4">2-4 years</option>
+                    <option value="5-7">5-7 years</option>
+                    <option value="8+">8+ years</option>
+                </select>
+
+
+                <label for="skills">Key Skills:</label>
+                <select id="skills" name="skills" required>
+                    <option value="" disabled selected>Select primary skill</option>
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Machine Learning">Machine Learning</option>
+                    <option value="Project Management">Project Management</option>
+                </select>
+
+
+                <button type="submit">💡 Get Salary Range</button>
+            </form>
+        </section>
+
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <h2>💼 Your Salary Prediction</h2>
+            <div class="result-box">
+                <p><strong>💰 Expected Salary Range:</strong> <span id="salaryRange">$70,000 - $90,000</span></p>
+                <p><strong>📈 Market Demand:</strong> <span id="marketDemand">High</span></p>
+                <p><strong>🌎 Top-Paying Locations:</strong> <span id="topLocations">San Francisco, New York</span></p>
+                <button onclick="downloadReport()">📥 Download Report</button>
+            </div>
+        </section>
+
+
+        <!-- Negotiation Tips Section -->
+        <section class="tips-section">
+            <h2>💡 Expert Negotiation Tips</h2>
+            <div class="tip">
+                <h3>📝 Before the Offer</h3>
+                <p>Research the company’s average salary range and be prepared with your expected salary.</p>
+            </div>
+            <div class="tip">
+                <h3>💬 During Negotiation</h3>
+                <p>Communicate your value clearly and stay confident. Avoid accepting the first offer immediately.</p>
+            </div>
+            <div class="tip">
+                <h3>✅ After Negotiation</h3>
+                <p>Get the final offer in writing and express gratitude, even if you decline.</p>
+            </div>
+        </section>
+    </div>
+
+
+    <script>
+        // JavaScript Script
+        document.getElementById('salaryForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+
+            // Simulate salary prediction (Replace with backend integration)
+            document.getElementById('salaryRange').textContent = '$75,000 - $95,000';
+            document.getElementById('marketDemand').textContent = 'High';
+            document.getElementById('topLocations').textContent = 'San Francisco, New York, Seattle';
+
+
+            // Show results section
+            document.getElementById('resultsSection').style.display = 'block';
+        });
+
+
+        // Simulate download report (Add real PDF generation if needed)
+        function downloadReport() {
+            alert('Report downloaded!');
+        }
+    </script>
+</body>
+</html>
+
+
